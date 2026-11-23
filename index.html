@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUTTOALTOPIANO — Asiago, Gallio, Roana: l'Altopiano spiegato bene</title>
+    <meta name="description" content="Sentieri, malghe, trincee della Grande Guerra, neve e sagre. Una guida indipendente aggiornata ogni giorno, con Nando che risponde alle tue domande.">
+
+    <!-- Google Fonts: Fraunces (Editorial Alpine Serif), Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Fraunces', 'Georgia', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        alabaster: '#F7F6F2',
+                        limestone: '#EBE7DF',
+                        spruce: '#16382E',
+                        spruceDark: '#0F2720',
+                        spruceLight: '#235344',
+                        charcoal: '#1C2220',
+                        amberWarm: '#D97706',
+                        glacier: '#0284C7',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F7F6F2;
+            color: #1C2220;
+            overflow-x: hidden;
+        }
+
+        /* Subtle Topographic Contour Pattern */
+        .bg-topo-pattern {
+            background-color: #F7F6F2;
+            background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%2316382E' stroke-opacity='0.055' stroke-width='1.1'%3E%3Cpath d='M-50 80 C 60 20, 140 140, 260 90 C 340 55, 390 110, 450 80'/%3E%3Cpath d='M-50 140 C 70 80, 150 200, 270 150 C 350 115, 400 170, 450 140'/%3E%3Cpath d='M-50 210 C 80 150, 160 270, 280 220 C 360 185, 410 240, 450 210'/%3E%3Cpath d='M-50 280 C 65 230, 155 335, 275 290 C 355 255, 405 305, 450 280'/%3E%3Cpath d='M-50 350 C 75 300, 165 405, 285 360 C 365 325, 415 375, 450 350'/%3E%3Cellipse cx='210' cy='190' rx='95' ry='52' transform='rotate(-12 210 190)'/%3E%3Cellipse cx='210' cy='190' rx='58' ry='30' transform='rotate(-12 210 190)'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .bg-topo-dark {
+            background-color: #16382E;
+            background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23FFFFFF' stroke-opacity='0.06' stroke-width='1.1'%3E%3Cpath d='M-50 80 C 60 20, 140 140, 260 90 C 340 55, 390 110, 450 80'/%3E%3Cpath d='M-50 150 C 70 90, 150 210, 270 160 C 350 125, 400 180, 450 150'/%3E%3Cpath d='M-50 230 C 80 170, 160 290, 280 240 C 360 205, 410 260, 450 230'/%3E%3Cpath d='M-50 310 C 65 260, 155 365, 275 320 C 355 285, 405 335, 450 310'/%3E%3Cellipse cx='290' cy='140' rx='110' ry='60' transform='rotate(15 290 140)'/%3E%3Cellipse cx='290' cy='140' rx='65' ry='34' transform='rotate(15 290 140)'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* Editorial Card Hover Elevation */
+        .alpine-card {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .alpine-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 38px -15px rgba(22, 56, 46, 0.14);
+            border-color: rgba(22, 56, 46, 0.25);
+        }
+
+        /* Gradient Text with Standard Property for Zero Linter Warnings */
+        .text-gradient-alpine {
+            background: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 55%, #FDE68A 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Smooth Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased bg-topo-pattern selection:bg-spruce selection:text-white">
+
+    <!-- =========================================================
+         STICKY EDITORIAL NAVIGATION BAR
+    ========================================================== -->
+    <header class="sticky top-0 z-50 bg-alabaster/90 backdrop-blur-xl border-b border-spruce/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-3 group focus:outline-none">
+                    <div class="w-10 h-10 rounded-xl bg-spruce text-alabaster flex items-center justify-center shadow-sm group-hover:bg-spruceLight transition-colors">
+                        <!-- Custom Mountain Silhouette & Contour Icon -->
+                        <svg class="w-6 h-6" viewBox="0 0 28 28" fill="none">
+                            <path d="M3 21L10.5 9L15.5 16.5L19.5 11.5L25 21H3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            <circle cx="20.5" cy="6.5" r="2" fill="#F59E0B"/>
+                        </svg>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-sans font-extrabold text-lg sm:text-xl tracking-tight text-spruce">TUTTOALTOPIANO</span>
+                        <span class="font-mono text-[10px] tracking-widest text-spruce/65 uppercase -mt-1">Sette Comuni · 1.000m</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+                    <a href="#comuni" class="px-3 py-2 rounded-xl text-sm font-semibold text-charcoal/80 hover:text-spruce hover:bg-spruce/5 transition-colors">Cosa vedere</a>
+                    <a href="#sentieri" class="px-3 py-2 rounded-xl text-sm font-semibold text-charcoal/80 hover:text-spruce hover:bg-spruce/5 transition-colors">Sentieri</a>
+                    <a href="#itinerari" class="px-3 py-2 rounded-xl text-sm font-semibold text-charcoal/80 hover:text-spruce hover:bg-spruce/5 transition-colors">Itinerari</a>
+                    <a href="#oggi" class="px-3 py-2 rounded-xl text-sm font-semibold text-charcoal/80 hover:text-spruce hover:bg-spruce/5 transition-colors">Dove andare oggi</a>
+                    <a href="#meteo" class="px-3 py-2 rounded-xl text-sm font-semibold text-charcoal/80 hover:text-spruce hover:bg-spruce/5 transition-colors">Meteo & neve</a>
+                    <a href="#comuni" class="px-3 py-2 rounded-xl text-sm font-semibold text-charcoal/80 hover:text-spruce hover:bg-spruce/5 transition-colors">Mappa</a>
+
+                    <!-- "Altro" Dropdown -->
+                    <div class="relative group">
+                        <button type="button" class="inline-flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-semibold text-charcoal/80 hover:text-spruce hover:bg-spruce/5 transition-colors cursor-pointer">
+                            <span>Altro</span>
+                            <svg class="w-4 h-4 text-spruce/60 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="absolute right-0 mt-1 w-56 rounded-2xl bg-white shadow-xl border border-spruce/10 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                            <a href="#meteo" class="block px-4 py-2.5 text-sm font-medium text-charcoal hover:bg-alabaster hover:text-spruce">Storia e Grande Guerra</a>
+                            <a href="#meteo" class="block px-4 py-2.5 text-sm font-medium text-charcoal hover:bg-alabaster hover:text-spruce">Malghe e Asiago DOP</a>
+                            <a href="#eventi" class="block px-4 py-2.5 text-sm font-medium text-charcoal hover:bg-alabaster hover:text-spruce">Eventi</a>
+                            <a href="#footer" class="block px-4 py-2.5 text-sm font-medium text-charcoal hover:bg-alabaster hover:text-spruce">Numeri utili</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- CTA Button: Chiedi a Nando + Mobile Hamburger -->
+                <div class="flex items-center gap-3">
+                    <button onclick="openNandoModal()" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-spruce hover:bg-spruceLight text-white text-sm font-semibold shadow-sm hover:shadow transition-all cursor-pointer">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                        <span>Chiedi a Nando</span>
+                    </button>
+
+                    <button id="mobile-menu-toggle" aria-label="Menu" class="lg:hidden p-2.5 rounded-xl bg-limestone/70 text-spruce hover:bg-limestone transition-colors">
+                        <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-drawer" class="hidden lg:hidden bg-alabaster border-t border-spruce/10 px-4 pt-3 pb-6 space-y-1.5">
+            <a href="#comuni" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-semibold text-charcoal hover:bg-limestone/60">Cosa vedere</a>
+            <a href="#sentieri" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-semibold text-charcoal hover:bg-limestone/60">Sentieri</a>
+            <a href="#itinerari" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-semibold text-charcoal hover:bg-limestone/60">Itinerari</a>
+            <a href="#oggi" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-semibold text-charcoal hover:bg-limestone/60">Dove andare oggi</a>
+            <a href="#meteo" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-semibold text-charcoal hover:bg-limestone/60">Meteo & neve</a>
+            <a href="#comuni" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-semibold text-charcoal hover:bg-limestone/60">Mappa</a>
+            <a href="#footer" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-semibold text-charcoal hover:bg-limestone/60">Altro</a>
+            <div class="pt-3">
+                <button onclick="openNandoModal()" class="w-full py-3.5 px-5 rounded-xl bg-spruce text-white font-semibold flex items-center justify-center gap-2 shadow-md">
+                    <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                    <span>Chiedi a Nando</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- =========================================================
+         HERO SECTION — ALPINE PANORAMA & 3 QUICK-ACCESS CARDS
+    ========================================================== -->
+    <section class="relative pt-6 pb-16 lg:pt-10 lg:pb-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Atmospheric Spruce & Limestone Hero Frame -->
+            <div class="relative rounded-[2rem] bg-topo-dark text-white overflow-hidden shadow-2xl border border-spruce/20">
+                
+                <!-- Decorative Alpine Ridge SVG Silhouette at Bottom -->
+                <svg class="absolute bottom-0 inset-x-0 w-full h-36 sm:h-48 text-[#102922] pointer-events-none opacity-80" viewBox="0 0 1440 220" preserveAspectRatio="none" fill="currentColor">
+                    <path d="M0,160 L140,95 L290,145 L460,60 L640,135 L820,45 L1010,125 L1210,70 L1440,140 L1440,220 L0,220 Z"/>
+                </svg>
+                <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-amber-500/15 blur-3xl pointer-events-none"></div>
+                <div class="absolute bottom-0 left-1/4 w-96 h-64 rounded-full bg-emerald-400/10 blur-3xl pointer-events-none"></div>
+
+                <div class="relative z-10 px-6 py-12 sm:px-12 sm:py-16 lg:px-16 lg:py-20">
+                    <div class="max-w-3xl space-y-6">
+                        <!-- Eyebrow Pill -->
+                        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-amber-200 text-xs sm:text-sm font-medium">
+                            <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            <span>Altopiano dei Sette Comuni · Veneto</span>
+                        </div>
+
+                        <!-- Editorial Serif H1 -->
+                        <h1 class="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.08] tracking-tight text-gradient-alpine">
+                            Asiago, Gallio, Roana: l'Altopiano spiegato bene
+                        </h1>
+
+                        <!-- Lead Description -->
+                        <p class="text-base sm:text-xl text-slate-200/95 leading-relaxed max-w-2xl font-normal">
+                            Sentieri, malghe, trincee della Grande Guerra, neve e sagre. Una guida indipendente aggiornata ogni giorno, con Nando che risponde alle tue domande.
+                        </p>
+
+                        <!-- 3 Primary Hero Action Buttons -->
+                        <div class="flex flex-wrap items-center gap-3.5 pt-2">
+                            <a href="#oggi" class="px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-spruceDark font-bold text-sm sm:text-base shadow-lg shadow-amber-500/20 transition-all inline-flex items-center gap-2">
+                                <span>Dove andare oggi</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                </svg>
+                            </a>
+
+                            <a href="#sentieri" class="px-6 py-3.5 rounded-xl bg-white/12 hover:bg-white/20 text-white border border-white/20 backdrop-blur-md font-semibold text-sm sm:text-base transition-all inline-flex items-center gap-2">
+                                <span>Sentieri ed escursioni</span>
+                            </a>
+
+                            <button onclick="openNandoModal()" class="px-6 py-3.5 rounded-xl bg-spruceDark/80 hover:bg-spruceDark text-amber-200 border border-amber-400/35 backdrop-blur-md font-semibold text-sm sm:text-base transition-all inline-flex items-center gap-2 cursor-pointer">
+                                <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                                <span>Chiedi a Nando</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 3 Quick-Access Highlight Cards inside Hero Bottom -->
+                    <div class="mt-12 lg:mt-16 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
+                        
+                        <!-- Card 1: Consiglio del giorno -->
+                        <a href="#oggi" class="group rounded-2xl bg-white/10 hover:bg-white/15 border border-white/15 backdrop-blur-md p-5 sm:p-6 transition-all flex flex-col justify-between">
+                            <div>
+                                <span class="inline-block font-mono text-[11px] uppercase tracking-wider text-amber-300 mb-2">
+                                    Consiglio del giorno
+                                </span>
+                                <h2 class="font-serif font-bold text-xl text-white group-hover:text-amber-200 transition-colors">
+                                    Dove andare oggi
+                                </h2>
+                                <p class="text-sm text-slate-200/85 mt-2 leading-relaxed">
+                                    La scelta migliore in base a meteo, vento e neve.
+                                </p>
+                            </div>
+                            <div class="mt-4 flex items-center text-xs font-mono text-amber-300">
+                                <span>Scopri ora</span>
+                                <span class="ml-1.5 group-hover:translate-x-1 transition-transform">→</span>
+                            </div>
+                        </a>
+
+                        <!-- Card 2: Arrivare -->
+                        <a href="#footer" class="group rounded-2xl bg-white/10 hover:bg-white/15 border border-white/15 backdrop-blur-md p-5 sm:p-6 transition-all flex flex-col justify-between">
+                            <div>
+                                <span class="inline-block font-mono text-[11px] uppercase tracking-wider text-sky-300 mb-2">
+                                    Arrivare
+                                </span>
+                                <h2 class="font-serif font-bold text-xl text-white group-hover:text-sky-200 transition-colors">
+                                    Strade e bus 2026
+                                </h2>
+                                <p class="text-sm text-slate-200/85 mt-2 leading-relaxed">
+                                    Valdastico, Valsugana, catene e collegamenti senza auto.
+                                </p>
+                            </div>
+                            <div class="mt-4 flex items-center text-xs font-mono text-sky-300">
+                                <span>Info viabilità</span>
+                                <span class="ml-1.5 group-hover:translate-x-1 transition-transform">→</span>
+                            </div>
+                        </a>
+
+                        <!-- Card 3: Itinerari -->
+                        <a href="#itinerari" class="group rounded-2xl bg-white/10 hover:bg-white/15 border border-white/15 backdrop-blur-md p-5 sm:p-6 transition-all flex flex-col justify-between">
+                            <div>
+                                <span class="inline-block font-mono text-[11px] uppercase tracking-wider text-emerald-300 mb-2">
+                                    Itinerari
+                                </span>
+                                <h2 class="font-serif font-bold text-xl text-white group-hover:text-emerald-200 transition-colors">
+                                    6 itinerari pronti
+                                </h2>
+                                <p class="text-sm text-slate-200/85 mt-2 leading-relaxed">
+                                    Da 1 giorno a 3, con bambini o sugli sci.
+                                </p>
+                            </div>
+                            <div class="mt-4 flex items-center text-xs font-mono text-emerald-300">
+                                <span>Esplora percorsi</span>
+                                <span class="ml-1.5 group-hover:translate-x-1 transition-transform">→</span>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: L'ALTOPIANO: SETTE COMUNI, MILLE MODI DI VIVERLO
+    ========================================================== -->
+    <section id="comuni" class="py-16 lg:py-24 reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Editorial Intro Header -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-14">
+                <div class="lg:col-span-6 space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-spruce/10 text-spruce font-mono text-xs uppercase tracking-wider">
+                        <span>Territorio & Comuni</span>
+                    </div>
+                    <h2 class="font-serif font-bold text-3xl sm:text-4xl lg:text-5xl text-spruce leading-tight">
+                        L'Altopiano: sette comuni, mille modi di viverlo
+                    </h2>
+                </div>
+                <div class="lg:col-span-6">
+                    <p class="text-base sm:text-lg text-charcoal/85 leading-relaxed">
+                        Un tavolato calcareo a mille metri sopra la pianura veneta, dove i pascoli d'alta quota confinano con le abetaie e con le trincee del 1916. Asiago è il cuore commerciale, Gallio la porta delle malghe e della neve, Roana il paese cimbro dei ponti e delle contrade. TUTTOALTOPIANO mette insieme quello che serve davvero: sentieri, orari, meteo, sapori e memoria.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 4 Municipality Cards with Elevation Markers -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- 1. Asiago -->
+                <article class="alpine-card rounded-3xl bg-white border border-spruce/10 overflow-hidden flex flex-col justify-between shadow-sm">
+                    <div>
+                        <!-- Illustrated Topographic Header -->
+                        <div class="h-32 bg-gradient-to-br from-[#16382E] to-[#235344] p-5 relative overflow-hidden flex flex-col justify-between">
+                            <svg class="absolute right-0 bottom-0 w-36 h-24 text-white/10" viewBox="0 0 160 100" fill="currentColor">
+                                <path d="M0 100 L45 35 L85 75 L125 20 L160 100 Z"/>
+                            </svg>
+                            <div class="flex items-center justify-between relative z-10">
+                                <span class="px-3 py-1 rounded-full bg-white/15 backdrop-blur-md font-mono text-xs font-semibold text-amber-200 border border-white/15">
+                                    1.001 m
+                                </span>
+                                <span class="font-mono text-[10px] uppercase tracking-widest text-white/70">Capoluogo</span>
+                            </div>
+                            <h3 class="font-serif font-bold text-2xl text-white relative z-10">Asiago</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-sm sm:text-base text-charcoal/85 leading-relaxed">
+                                Il capoluogo dell'Altopiano: il Corso, il Sacrario militare del Leiten, l'Osservatorio astrofisico e il formaggio DOP che porta il suo nome. Punto di partenza naturale per ogni escursione.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-5 pt-3 border-t border-spruce/5 flex items-center justify-between text-xs font-mono text-spruce/70">
+                        <span>45°52'N 11°30'E</span>
+                        <span class="text-spruce font-semibold">Sette Comuni</span>
+                    </div>
+                </article>
+
+                <!-- 2. Gallio -->
+                <article class="alpine-card rounded-3xl bg-white border border-spruce/10 overflow-hidden flex flex-col justify-between shadow-sm">
+                    <div>
+                        <div class="h-32 bg-gradient-to-br from-[#1E473B] to-[#2E6B59] p-5 relative overflow-hidden flex flex-col justify-between">
+                            <svg class="absolute right-0 bottom-0 w-36 h-24 text-white/10" viewBox="0 0 160 100" fill="currentColor">
+                                <path d="M0 100 L35 50 L75 25 L120 65 L160 30 L160 100 Z"/>
+                            </svg>
+                            <div class="flex items-center justify-between relative z-10">
+                                <span class="px-3 py-1 rounded-full bg-white/15 backdrop-blur-md font-mono text-xs font-semibold text-sky-200 border border-white/15">
+                                    1.090 m
+                                </span>
+                                <span class="font-mono text-[10px] uppercase tracking-widest text-white/70">Malghe & Neve</span>
+                            </div>
+                            <h3 class="font-serif font-bold text-2xl text-white relative z-10">Gallio</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-sm sm:text-base text-charcoal/85 leading-relaxed">
+                                Il paese delle malghe e della neve: da qui si sale a Melette e Campomulo, cuore dello sci di fondo dell'Altopiano, tra pascoli, contrade e trattorie di montagna.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-5 pt-3 border-t border-spruce/5 flex items-center justify-between text-xs font-mono text-spruce/70">
+                        <span>45°53'N 11°33'E</span>
+                        <span class="text-spruce font-semibold">Sette Comuni</span>
+                    </div>
+                </article>
+
+                <!-- 3. Roana -->
+                <article class="alpine-card rounded-3xl bg-white border border-spruce/10 overflow-hidden flex flex-col justify-between shadow-sm">
+                    <div>
+                        <div class="h-32 bg-gradient-to-br from-[#273E36] to-[#3B5B4F] p-5 relative overflow-hidden flex flex-col justify-between">
+                            <svg class="absolute right-0 bottom-0 w-36 h-24 text-white/10" viewBox="0 0 160 100" fill="currentColor">
+                                <path d="M0 100 L50 40 L90 80 L130 35 L160 100 Z"/>
+                            </svg>
+                            <div class="flex items-center justify-between relative z-10">
+                                <span class="px-3 py-1 rounded-full bg-white/15 backdrop-blur-md font-mono text-xs font-semibold text-amber-200 border border-white/15">
+                                    992 m
+                                </span>
+                                <span class="font-mono text-[10px] uppercase tracking-widest text-white/70">Cultura Cimbra</span>
+                            </div>
+                            <h3 class="font-serif font-bold text-2xl text-white relative z-10">Roana</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-sm sm:text-base text-charcoal/85 leading-relaxed">
+                                Il comune cimbro per eccellenza, con le frazioni di Mezzaselva, Canove, Camporovere e Cesuna. Qui si conserva la lingua cimbra e il celebre Ponte di Roana.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-5 pt-3 border-t border-spruce/5 flex items-center justify-between text-xs font-mono text-spruce/70">
+                        <span>45°52'N 11°27'E</span>
+                        <span class="text-spruce font-semibold">Sette Comuni</span>
+                    </div>
+                </article>
+
+                <!-- 4. Rotzo -->
+                <article class="alpine-card rounded-3xl bg-white border border-spruce/10 overflow-hidden flex flex-col justify-between shadow-sm">
+                    <div>
+                        <div class="h-32 bg-gradient-to-br from-[#374836] to-[#4E644C] p-5 relative overflow-hidden flex flex-col justify-between">
+                            <svg class="absolute right-0 bottom-0 w-36 h-24 text-white/10" viewBox="0 0 160 100" fill="currentColor">
+                                <path d="M0 100 L60 30 L110 70 L160 45 L160 100 Z"/>
+                            </svg>
+                            <div class="flex items-center justify-between relative z-10">
+                                <span class="px-3 py-1 rounded-full bg-white/15 backdrop-blur-md font-mono text-xs font-semibold text-emerald-200 border border-white/15">
+                                    935 m
+                                </span>
+                                <span class="font-mono text-[10px] uppercase tracking-widest text-white/70">Val d'Astico</span>
+                            </div>
+                            <h3 class="font-serif font-bold text-2xl text-white relative z-10">Rotzo</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-sm sm:text-base text-charcoal/85 leading-relaxed">
+                                Terra del patatino di Rotzo, con l'altura di Castelletto e le viste sulla Val d'Astico.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-5 pt-3 border-t border-spruce/5 flex items-center justify-between text-xs font-mono text-spruce/70">
+                        <span>45°51'N 11°23'E</span>
+                        <span class="text-spruce font-semibold">Sette Comuni</span>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: CONSIGLI DI OGGI · LUNEDÌ 23 NOVEMBRE
+    ========================================================== -->
+    <section id="oggi" class="py-16 lg:py-24 bg-limestone/65 border-y border-spruce/10 reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+                <div class="space-y-3">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-600/25 text-amber-900 font-mono text-xs font-semibold">
+                        <span class="w-2 h-2 rounded-full bg-amber-600"></span>
+                        <span>Consigli di oggi · lunedì 23 novembre</span>
+                    </div>
+                    <h2 class="font-serif font-bold text-3xl sm:text-4xl lg:text-5xl text-spruce">
+                        Tre idee per la giornata
+                    </h2>
+                </div>
+
+                <a href="#itinerari" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white hover:bg-spruce text-spruce hover:text-white border border-spruce/15 font-semibold text-sm shadow-sm transition-all self-start md:self-auto">
+                    <span>Vedi la pagina completa</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- 3 Ranked Cards (#1 oggi, #2 oggi, #3 oggi) -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+                
+                <!-- #1 oggi -->
+                <article class="alpine-card rounded-3xl bg-white border border-spruce/10 p-7 sm:p-8 flex flex-col justify-between shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 right-0 px-4 py-2 rounded-bl-2xl bg-spruce text-amber-300 font-mono text-xs font-bold">
+                        #1 oggi
+                    </div>
+                    <div>
+                        <div class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-spruce/70 uppercase tracking-wider mb-3">
+                            <svg class="w-3.5 h-3.5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            </svg>
+                            <span>Asiago</span>
+                        </div>
+                        <h3 class="font-serif font-bold text-2xl text-charcoal mb-3">
+                            Sacrario Militare del Leiten
+                        </h3>
+                        <p class="text-charcoal/80 text-sm sm:text-base leading-relaxed">
+                            Il grande monumento bianco che custodisce oltre 50.000 caduti della Grande Guerra.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-spruce/10 flex items-center justify-between text-xs font-mono text-spruce">
+                        <span>Memoria & Storia</span>
+                        <span>1.058 m s.l.m.</span>
+                    </div>
+                </article>
+
+                <!-- #2 oggi -->
+                <article class="alpine-card rounded-3xl bg-white border border-spruce/10 p-7 sm:p-8 flex flex-col justify-between shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 right-0 px-4 py-2 rounded-bl-2xl bg-spruce text-amber-300 font-mono text-xs font-bold">
+                        #2 oggi
+                    </div>
+                    <div>
+                        <div class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-spruce/70 uppercase tracking-wider mb-3">
+                            <svg class="w-3.5 h-3.5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            </svg>
+                            <span>Enego / Gallio</span>
+                        </div>
+                        <h3 class="font-serif font-bold text-2xl text-charcoal mb-3">
+                            Piana della Marcesina
+                        </h3>
+                        <p class="text-charcoal/80 text-sm sm:text-base leading-relaxed">
+                            La "piccola Finlandia" d'Italia: torbiere, abetaie e praterie a 1.300 metri.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-spruce/10 flex items-center justify-between text-xs font-mono text-spruce">
+                        <span>Natura & Paesaggio</span>
+                        <span>1.300 m s.l.m.</span>
+                    </div>
+                </article>
+
+                <!-- #3 oggi -->
+                <article class="alpine-card rounded-3xl bg-white border border-spruce/10 p-7 sm:p-8 flex flex-col justify-between shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 right-0 px-4 py-2 rounded-bl-2xl bg-spruce text-amber-300 font-mono text-xs font-bold">
+                        #3 oggi
+                    </div>
+                    <div>
+                        <div class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-spruce/70 uppercase tracking-wider mb-3">
+                            <svg class="w-3.5 h-3.5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            </svg>
+                            <span>Roana</span>
+                        </div>
+                        <h3 class="font-serif font-bold text-2xl text-charcoal mb-3">
+                            Ponte di Roana
+                        </h3>
+                        <p class="text-charcoal/80 text-sm sm:text-base leading-relaxed">
+                            Viadotto storico sospeso sulla Val d'Assa, simbolo dell'ingegneria di inizio Novecento.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-spruce/10 flex items-center justify-between text-xs font-mono text-spruce">
+                        <span>Architettura & Panorami</span>
+                        <span>Val d'Assa</span>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: METEO E NEVE IN DIRETTA + 3 THEMATIC PILLARS
+    ========================================================== -->
+    <section id="meteo" class="py-16 lg:py-24 reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="mb-12 space-y-2">
+                <h2 class="font-serif font-bold text-3xl sm:text-4xl lg:text-5xl text-spruce">
+                    Meteo e neve in diretta
+                </h2>
+                <p class="text-charcoal/75 text-base sm:text-lg">
+                    Dati aggiornati ogni 30 minuti da Open-Meteo.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                
+                <!-- Left 7 Cols: Live Open-Meteo Telemetry Dashboard -->
+                <div class="lg:col-span-7 rounded-3xl bg-spruce text-white p-6 sm:p-8 lg:p-10 shadow-xl flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-sky-400/15 blur-3xl pointer-events-none"></div>
+                    
+                    <div>
+                        <!-- Station Header -->
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-white/15">
+                            <div>
+                                <h3 class="font-serif font-bold text-xl sm:text-2xl text-white">
+                                    Meteo e neve ad Asiago (1.000 m)
+                                </h3>
+                                <p class="font-mono text-xs text-amber-200/90 mt-1 flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                    <span>Aggiornato: 13:45 · Open-Meteo</span>
+                                </p>
+                            </div>
+                            <!-- Sun/Cloud Weather Emblem -->
+                            <div class="w-12 h-12 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center text-amber-300 shrink-0">
+                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- 4 Telemetry Metric Tiles -->
+                        <div class="grid grid-cols-2 gap-4 my-7">
+                            <!-- Tile 1: Temperatura -->
+                            <div class="rounded-2xl bg-white/10 border border-white/10 p-5 backdrop-blur-sm">
+                                <div class="font-mono font-bold text-3xl sm:text-4xl text-white">5°C</div>
+                                <div class="text-xs font-semibold uppercase tracking-wider text-amber-200 mt-1.5">Temperatura</div>
+                                <div class="text-sm text-slate-200/85 mt-0.5">Poco nuvoloso</div>
+                            </div>
+
+                            <!-- Tile 2: Vento -->
+                            <div class="rounded-2xl bg-white/10 border border-white/10 p-5 backdrop-blur-sm">
+                                <div class="font-mono font-bold text-3xl sm:text-4xl text-white">11 km/h</div>
+                                <div class="text-xs font-semibold uppercase tracking-wider text-sky-300 mt-1.5">Vento</div>
+                                <div class="text-sm text-slate-200/85 mt-0.5">Raffiche 19 km/h</div>
+                            </div>
+
+                            <!-- Tile 3: Umidità -->
+                            <div class="rounded-2xl bg-white/10 border border-white/10 p-5 backdrop-blur-sm">
+                                <div class="font-mono font-bold text-3xl sm:text-4xl text-white">81%</div>
+                                <div class="text-xs font-semibold uppercase tracking-wider text-emerald-300 mt-1.5">Umidità</div>
+                                <div class="text-sm text-slate-200/85 mt-0.5">Percepita 2°C</div>
+                            </div>
+
+                            <!-- Tile 4: Neve fresca -->
+                            <div class="rounded-2xl bg-white/10 border border-white/10 p-5 backdrop-blur-sm">
+                                <div class="font-mono font-bold text-3xl sm:text-4xl text-white">0.0 cm</div>
+                                <div class="text-xs font-semibold uppercase tracking-wider text-indigo-200 mt-1.5">Neve fresca</div>
+                                <div class="text-sm text-slate-200/85 mt-0.5">Pioggia 0.0 mm</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7-Day Forecast Button -->
+                    <div class="pt-2">
+                        <button onclick="toggleForecastDrawer()" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-spruceDark font-bold text-sm transition-all inline-flex items-center justify-center gap-2 cursor-pointer">
+                            <span>Previsioni a 7 giorni</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </button>
+
+                        <!-- Collapsible 7-Day Outlook Strip -->
+                        <div id="forecast-strip" class="hidden mt-4 p-4 rounded-2xl bg-spruceDark/90 border border-white/10 grid grid-cols-4 sm:grid-cols-7 gap-2 text-center font-mono text-xs">
+                            <div class="p-2 rounded-xl bg-white/5"><div class="text-amber-300">Lun</div><div class="font-bold text-white mt-1">5° / -1°</div></div>
+                            <div class="p-2 rounded-xl bg-white/5"><div class="text-slate-300">Mar</div><div class="font-bold text-white mt-1">4° / -2°</div></div>
+                            <div class="p-2 rounded-xl bg-white/5"><div class="text-slate-300">Mer</div><div class="font-bold text-white mt-1">6° / 0°</div></div>
+                            <div class="p-2 rounded-xl bg-white/5"><div class="text-slate-300">Gio</div><div class="font-bold text-white mt-1">3° / -3°</div></div>
+                            <div class="p-2 rounded-xl bg-white/5"><div class="text-slate-300">Ven</div><div class="font-bold text-white mt-1">2° / -4°</div></div>
+                            <div class="p-2 rounded-xl bg-white/5"><div class="text-slate-300">Sab</div><div class="font-bold text-white mt-1">4° / -2°</div></div>
+                            <div class="p-2 rounded-xl bg-white/5"><div class="text-slate-300">Dom</div><div class="font-bold text-white mt-1">5° / -1°</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right 5 Cols: 3 Thematic Discovery Cards -->
+                <div class="lg:col-span-5 flex flex-col justify-between gap-5">
+                    
+                    <!-- Pillar 1: Malghe e Asiago DOP -->
+                    <div class="alpine-card rounded-3xl bg-white border border-spruce/10 p-6 sm:p-7 shadow-sm flex items-start gap-5 flex-1">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-500/15 text-amber-700 flex items-center justify-center shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-serif font-bold text-xl text-spruce">
+                                Malghe e Asiago DOP
+                            </h3>
+                            <p class="text-sm sm:text-base text-charcoal/80 mt-1.5 leading-relaxed">
+                                Dove assaggiare formaggio e ricotta appena fatti.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 2: Grande Guerra -->
+                    <div class="alpine-card rounded-3xl bg-white border border-spruce/10 p-6 sm:p-7 shadow-sm flex items-start gap-5 flex-1">
+                        <div class="w-12 h-12 rounded-2xl bg-spruce/10 text-spruce flex items-center justify-center shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-serif font-bold text-xl text-spruce">
+                                Grande Guerra
+                            </h3>
+                            <p class="text-sm sm:text-base text-charcoal/80 mt-1.5 leading-relaxed">
+                                Trincee, forti e sacrari da visitare a piedi.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 3: Inverno e sci di fondo -->
+                    <div class="alpine-card rounded-3xl bg-white border border-spruce/10 p-6 sm:p-7 shadow-sm flex items-start gap-5 flex-1">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-500/15 text-sky-700 flex items-center justify-center shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" d="M12 3v18m0-18l-3 3m3-3l3 3m-3 15l-3-3m3 3l3-3M3 12h18M3 12l3-3m-3 3l3 3m15-3l-3-3m3 3l-3 3"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-serif font-bold text-xl text-spruce">
+                                Inverno e sci di fondo
+                            </h3>
+                            <p class="text-sm sm:text-base text-charcoal/80 mt-1.5 leading-relaxed">
+                                Campomulo, Marcesina e le piste dell'Altopiano.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: ASSISTENTE LOCALE — CHIEDI A NANDO
+    ========================================================== -->
+    <section id="nando" class="py-16 lg:py-24 bg-limestone/70 border-y border-spruce/10 reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="rounded-[2rem] bg-white border border-spruce/15 p-6 sm:p-10 lg:p-14 shadow-lg grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                <!-- Left Column: Nando Intro & CTA -->
+                <div class="lg:col-span-5 space-y-5">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-spruce/10 text-spruce font-mono text-xs font-semibold uppercase tracking-wider">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>Assistente locale</span>
+                    </div>
+
+                    <h2 class="font-serif font-bold text-3xl sm:text-4xl lg:text-5xl text-spruce">
+                        Chiedi a Nando
+                    </h2>
+
+                    <p class="text-base sm:text-lg text-charcoal/85 leading-relaxed">
+                        Nando è la guida virtuale dell'Altopiano: gli chiedi che sentiero fare con la pioggia, dove mangiare in malga o come arrivare senza auto, e ti risponde in un attimo.
+                    </p>
+
+                    <div class="pt-2">
+                        <button onclick="openNandoModal()" class="px-7 py-4 rounded-xl bg-spruce hover:bg-spruceLight text-white font-bold text-base shadow-md transition-all inline-flex items-center gap-2.5 cursor-pointer">
+                            <span>Parla con Nando</span>
+                            <svg class="w-5 h-5 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Prompt Chips & Live Response Preview -->
+                <div class="lg:col-span-7 bg-alabaster rounded-3xl border border-spruce/10 p-5 sm:p-7 space-y-5">
+                    <div class="flex items-center justify-between border-b border-spruce/10 pb-3.5">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-spruce text-amber-300 font-serif font-bold text-lg flex items-center justify-center">
+                                N
+                            </div>
+                            <div>
+                                <div class="font-bold text-sm text-spruce">Nando · Guida dell'Altopiano</div>
+                                <div class="font-mono text-[11px] text-emerald-700">Online · Clicca una domanda qui sotto</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Reply Box -->
+                    <div id="nando-inline-reply" class="rounded-2xl bg-white border border-spruce/10 p-4 sm:p-5 text-sm sm:text-base text-charcoal/90 leading-relaxed shadow-sm">
+                        Ciao! Sono <strong>Nando</strong>. Seleziona una delle domande rapide qui sotto oppure clicca su <em>Parla con Nando</em> per chiedermi consigli su sentieri, meteo, malghe e trasporti.
+                    </div>
+
+                    <!-- 4 Preserved Prompt Chips -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <button onclick="askNandoInline(0)" class="text-left px-4 py-3 rounded-xl bg-white hover:bg-spruce hover:text-white border border-spruce/15 text-xs sm:text-sm font-semibold text-spruce transition-all cursor-pointer">
+                            Che sentiero faccio con i bambini?
+                        </button>
+                        <button onclick="askNandoInline(1)" class="text-left px-4 py-3 rounded-xl bg-white hover:bg-spruce hover:text-white border border-spruce/15 text-xs sm:text-sm font-semibold text-spruce transition-all cursor-pointer">
+                            Dove si scia oggi sull'Altopiano?
+                        </button>
+                        <button onclick="askNandoInline(2)" class="text-left px-4 py-3 rounded-xl bg-white hover:bg-spruce hover:text-white border border-spruce/15 text-xs sm:text-sm font-semibold text-spruce transition-all cursor-pointer">
+                            Cosa vedo in un giorno tra Asiago e Gallio?
+                        </button>
+                        <button onclick="askNandoInline(3)" class="text-left px-4 py-3 rounded-xl bg-white hover:bg-spruce hover:text-white border border-spruce/15 text-xs sm:text-sm font-semibold text-spruce transition-all cursor-pointer">
+                            Quali malghe sono aperte a settembre?
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         SPLIT SECTION: SENTIERI PIÙ CERCATI & PROSSIMI APPUNTAMENTI
+    ========================================================== -->
+    <section class="py-16 lg:py-24 reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
+                
+                <!-- Left 7 Cols: Sentieri più cercati -->
+                <div id="sentieri" class="lg:col-span-7 space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <h2 class="font-serif font-bold text-3xl sm:text-4xl text-spruce">
+                            Sentieri più cercati
+                        </h2>
+
+                        <!-- Difficulty Filter Pills -->
+                        <div class="flex flex-wrap gap-1.5" id="trail-filters">
+                            <button data-diff="all" class="trail-filter active px-3 py-1 rounded-lg text-xs font-mono font-semibold bg-spruce text-white cursor-pointer">Tutti</button>
+                            <button data-diff="Facile" class="trail-filter px-3 py-1 rounded-lg text-xs font-mono font-semibold bg-white border border-spruce/15 text-charcoal/75 hover:text-spruce cursor-pointer">Facile</button>
+                            <button data-diff="Medio" class="trail-filter px-3 py-1 rounded-lg text-xs font-mono font-semibold bg-white border border-spruce/15 text-charcoal/75 hover:text-spruce cursor-pointer">Medio</button>
+                            <button data-diff="Impegnativo" class="trail-filter px-3 py-1 rounded-lg text-xs font-mono font-semibold bg-white border border-spruce/15 text-charcoal/75 hover:text-spruce cursor-pointer">Impegnativo</button>
+                        </div>
+                    </div>
+
+                    <!-- 5 Trail Cards -->
+                    <div class="space-y-3.5" id="trails-list">
+                        
+                        <!-- Trail 1 -->
+                        <div data-difficulty="Facile" class="trail-item alpine-card rounded-2xl bg-white border border-spruce/10 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-800 font-mono font-bold text-xs flex items-center justify-center shrink-0">
+                                    01
+                                </div>
+                                <h3 class="font-serif font-bold text-lg sm:text-xl text-charcoal">
+                                    Anello del Monte Zebio
+                                </h3>
+                            </div>
+                            <span class="inline-flex items-center px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-mono text-xs font-semibold self-start sm:self-auto shrink-0">
+                                Facile · 2h 30'
+                            </span>
+                        </div>
+
+                        <!-- Trail 2 -->
+                        <div data-difficulty="Medio" class="trail-item alpine-card rounded-2xl bg-white border border-spruce/10 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-800 font-mono font-bold text-xs flex items-center justify-center shrink-0">
+                                    02
+                                </div>
+                                <h3 class="font-serif font-bold text-lg sm:text-xl text-charcoal">
+                                    Cima Portule dalla Bocchetta Portule
+                                </h3>
+                            </div>
+                            <span class="inline-flex items-center px-3.5 py-1.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200 font-mono text-xs font-semibold self-start sm:self-auto shrink-0">
+                                Medio · 4h 30'
+                            </span>
+                        </div>
+
+                        <!-- Trail 3 -->
+                        <div data-difficulty="Facile" class="trail-item alpine-card rounded-2xl bg-white border border-spruce/10 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-800 font-mono font-bold text-xs flex items-center justify-center shrink-0">
+                                    03
+                                </div>
+                                <h3 class="font-serif font-bold text-lg sm:text-xl text-charcoal">
+                                    Anello della Marcesina
+                                </h3>
+                            </div>
+                            <span class="inline-flex items-center px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-mono text-xs font-semibold self-start sm:self-auto shrink-0">
+                                Facile · 2h 45'
+                            </span>
+                        </div>
+
+                        <!-- Trail 4 -->
+                        <div data-difficulty="Impegnativo" class="trail-item alpine-card rounded-2xl bg-white border border-spruce/10 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-rose-500/15 text-rose-800 font-mono font-bold text-xs flex items-center justify-center shrink-0">
+                                    04
+                                </div>
+                                <h3 class="font-serif font-bold text-lg sm:text-xl text-charcoal">
+                                    Sentiero delle Calà - Val Frenzela
+                                </h3>
+                            </div>
+                            <span class="inline-flex items-center px-3.5 py-1.5 rounded-full bg-rose-50 text-rose-800 border border-rose-200 font-mono text-xs font-semibold self-start sm:self-auto shrink-0">
+                                Impegnativo · 3h 30'
+                            </span>
+                        </div>
+
+                        <!-- Trail 5 -->
+                        <div data-difficulty="Medio" class="trail-item alpine-card rounded-2xl bg-white border border-spruce/10 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-800 font-mono font-bold text-xs flex items-center justify-center shrink-0">
+                                    05
+                                </div>
+                                <h3 class="font-serif font-bold text-lg sm:text-xl text-charcoal">
+                                    Monte Fior e Castelgomberto
+                                </h3>
+                            </div>
+                            <span class="inline-flex items-center px-3.5 py-1.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200 font-mono text-xs font-semibold self-start sm:self-auto shrink-0">
+                                Medio · 3h 45'
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Right 5 Cols: Prossimi appuntamenti -->
+                <div id="eventi" class="lg:col-span-5 space-y-6">
+                    <h2 class="font-serif font-bold text-3xl sm:text-4xl text-spruce">
+                        Prossimi appuntamenti
+                    </h2>
+
+                    <div class="rounded-3xl bg-white border border-spruce/10 p-6 sm:p-7 shadow-sm space-y-5">
+                        
+                        <!-- Event 1 -->
+                        <div class="pb-4 border-b border-spruce/10">
+                            <div class="font-mono text-xs font-semibold text-amber-700">Dicembre · Asiago, Gallio, Canove</div>
+                            <h3 class="font-serif font-bold text-lg text-charcoal mt-1">Mercatini di Natale</h3>
+                        </div>
+
+                        <!-- Event 2 -->
+                        <div class="pb-4 border-b border-spruce/10">
+                            <div class="font-mono text-xs font-semibold text-amber-700">31 dicembre · Asiago</div>
+                            <h3 class="font-serif font-bold text-lg text-charcoal mt-1">Capodanno in piazza</h3>
+                        </div>
+
+                        <!-- Event 3 -->
+                        <div class="pb-4 border-b border-spruce/10">
+                            <div class="font-mono text-xs font-semibold text-sky-700">Gennaio - febbraio · Campomulo (Gallio)</div>
+                            <h3 class="font-serif font-bold text-lg text-charcoal mt-1">Gran Fondo Val Formica</h3>
+                        </div>
+
+                        <!-- Event 4 -->
+                        <div class="pb-4 border-b border-spruce/10">
+                            <div class="font-mono text-xs font-semibold text-spruce">Febbraio · Roana e frazioni</div>
+                            <h3 class="font-serif font-bold text-lg text-charcoal mt-1">Carnevale cimbro</h3>
+                        </div>
+
+                        <!-- Event 5 -->
+                        <div>
+                            <div class="font-mono text-xs font-semibold text-emerald-700">Maggio - giugno · Pascoli di Gallio ed Enego</div>
+                            <h3 class="font-serif font-bold text-lg text-charcoal mt-1">Risveglio delle malghe</h3>
+                        </div>
+
+                        <div class="pt-3">
+                            <a href="#footer" class="w-full py-3.5 px-5 rounded-xl bg-alabaster hover:bg-spruce text-spruce hover:text-white border border-spruce/15 font-semibold text-sm transition-all flex items-center justify-center gap-2">
+                                <span>Tutti gli eventi</span>
+                                <span>→</span>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: ITINERARI PRONTI ALL'USO (6 EDITORIAL CARDS)
+    ========================================================== -->
+    <section id="itinerari" class="py-16 lg:py-24 bg-limestone/65 border-t border-spruce/10 reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="max-w-2xl mb-12 space-y-3">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-spruce/10 text-spruce font-mono text-xs uppercase tracking-wider">
+                    <span>Guide & Percorsi</span>
+                </div>
+                <h2 class="font-serif font-bold text-3xl sm:text-4xl lg:text-5xl text-spruce">
+                    Itinerari pronti all'uso
+                </h2>
+            </div>
+
+            <!-- 6 Itinerary Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                
+                <!-- Itinerary 1 -->
+                <article class="alpine-card rounded-3xl bg-white border border-spruce/10 p-7 flex flex-col justify-between shadow-sm">
+                    <div>
+                        <span class="inline-block px-3 py-1 rounded-full bg-amber-500/15 text-amber-900 font-mono text-xs font-semibold mb-4">
+                            1 giorno · Prima volta
+                        </span>
+                        <h3 class="font-serif font-bold text-2xl text-charcoal mb-3">
+                            L'Altopiano in 1 giorno
+                        </h3>
+                        <p class="text-charcoal/80 text-sm sm:text-base leading-relaxed">
+                            Il giro classico tra Asiago, Gallio e Roana per chi ha solo una giornata.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-spruce/10 flex items-center justify-between text-xs font-mono text-spruce">
+                        <span>Itinerario 01</span>
+                        <span>Asiago · Gallio · Roana</span>
+                    </div>
+                </article>
+
+                <!-- Itinerary 2 -->
+                <article class="alpine-card rounded-3xl bg-white border border-spruce/10 p-7 flex flex-col justify-between shadow-sm">
+                    <div>
+                        <span class="inline-block px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-900 font-mono text-xs font-semibold mb-4">
+                            2 giorni · Famiglie
+                        </span>
+                        <h3 class="font-serif font-bold text-2xl text-charcoal mb-3">
+                            2 giorni con bambini
+                        </h3>
+                        <p class="text-charcoal/80 text-sm sm:text-base leading-relaxed">
+                            Percorsi facili, animali, parco avventura e una serata sotto le stelle.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-spruce/10 flex items-center justify-between text-xs font-mono text-spruce">
+                        <span>Itinerario 02</span>
+                        <span>Family Friendly</span>
+                    </div>
+                </article>
+
+                <!-- Itinerary 3 -->
+                <article class="alpine-card rounded-3xl bg-white border border-spruce/10 p-7 flex flex-col justify-between shadow-sm">
+                    <div>
+                        <span class="inline-block px-3 py-1 rounded-full bg-stone-200 text-stone-800 font-mono text-xs font-semibold mb-4">
+                            2 giorni · Storia
+                        </span>
+                        <h3 class="font-serif font-bold text-2xl text-charcoal mb-3">
+                            2 giorni sulla Grande Guerra
+                        </h3>
+                        <p class="text-charcoal/80 text-sm sm:text-base leading-relaxed">
+                            Trincee, sacrari e musei per capire il fronte dell'Altopiano.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-spruce/10 flex items-center justify-between text-xs font-mono text-spruce">
+                        <span>Itinerario 03</span>
+                        <span>1915 – 1918</span>
+                    </div>
+                </article>
+
+                <!-- Itinerary 4 -->
+                <article class="alpine-card rounded-3xl bg-white border border-spruce/10 p-7 flex flex-col justify-between shadow-sm">
+                    <div>
+                        <span class="inline-block px-3 py-1 rounded-full bg-spruce/15 text-spruce font-mono text-xs font-semibold mb-4">
+                            3 giorni · Escursionisti
+                        </span>
+                        <h3 class="font-serif font-bold text-2xl text-charcoal mb-3">
+                            3 giorni di trekking
+                        </h3>
+                        <p class="text-charcoal/80 text-sm sm:text-base leading-relaxed">
+                            Le cime maggiori dell'Altopiano, dormendo tra Gallio e Asiago.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-spruce/10 flex items-center justify-between text-xs font-mono text-spruce">
+                        <span>Itinerario 04</span>
+                        <span>Alta Quota</span>
+                    </div>
+                </article>
+
+                <!-- Itinerary 5 -->
+                <article class="alpine-card rounded-3xl bg-white border border-spruce/10 p-7 flex flex-col justify-between shadow-sm">
+                    <div>
+                        <span class="inline-block px-3 py-1 rounded-full bg-sky-500/15 text-sky-900 font-mono text-xs font-semibold mb-4">
+                            2 giorni · Inverno
+                        </span>
+                        <h3 class="font-serif font-bold text-2xl text-charcoal mb-3">
+                            Weekend sulla neve
+                        </h3>
+                        <p class="text-charcoal/80 text-sm sm:text-base leading-relaxed">
+                            Fondo a Campomulo, discesa al Kaberlaba e ciaspole in Marcesina.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-spruce/10 flex items-center justify-between text-xs font-mono text-spruce">
+                        <span>Itinerario 05</span>
+                        <span>Sci & Ciaspole</span>
+                    </div>
+                </article>
+
+                <!-- Itinerary 6 -->
+                <article class="alpine-card rounded-3xl bg-white border border-spruce/10 p-7 flex flex-col justify-between shadow-sm">
+                    <div>
+                        <span class="inline-block px-3 py-1 rounded-full bg-orange-500/15 text-orange-900 font-mono text-xs font-semibold mb-4">
+                            2 giorni · Coppie
+                        </span>
+                        <h3 class="font-serif font-bold text-2xl text-charcoal mb-3">
+                            Autunno slow tra le contrade
+                        </h3>
+                        <p class="text-charcoal/80 text-sm sm:text-base leading-relaxed">
+                            Foliage, mercatini del formaggio e passeggiate senza fatica.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-spruce/10 flex items-center justify-between text-xs font-mono text-spruce">
+                        <span>Itinerario 06</span>
+                        <span>Sapori & Relax</span>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         EDITORIAL FOOTER (100% PRESERVED LINKS & COLOPHON)
+    ========================================================== -->
+    <footer id="footer" class="bg-spruceDark text-slate-200 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+                
+                <!-- Brand & Tagline -->
+                <div class="lg:col-span-4 space-y-4">
+                    <a href="#" class="inline-flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-white/10 text-amber-300 flex items-center justify-center">
+                            <svg class="w-5 h-5" viewBox="0 0 28 28" fill="none">
+                                <path d="M3 21L10.5 9L15.5 16.5L19.5 11.5L25 21H3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                <circle cx="20.5" cy="6.5" r="2" fill="#F59E0B"/>
+                            </svg>
+                        </div>
+                        <span class="font-sans font-extrabold text-xl tracking-tight text-white">TUTTOALTOPIANO</span>
+                    </a>
+                    <p class="font-serif text-lg text-white leading-snug">
+                        La guida indipendente dell'Altopiano dei Sette Comuni
+                    </p>
+                    <p class="font-mono text-xs text-amber-200/85">
+                        Asiago · Gallio · Roana e gli altri Sette Comuni
+                    </p>
+                </div>
+
+                <!-- Column 1: Scoprire -->
+                <div class="lg:col-span-2 space-y-3">
+                    <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-amber-300">Scoprire</h4>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li><a href="#comuni" class="hover:text-white transition-colors">Cosa vedere</a></li>
+                        <li><a href="#oggi" class="hover:text-white transition-colors">Cosa fare</a></li>
+                        <li><a href="#sentieri" class="hover:text-white transition-colors">Sentieri</a></li>
+                        <li><a href="#itinerari" class="hover:text-white transition-colors">Itinerari</a></li>
+                        <li><a href="#meteo" class="hover:text-white transition-colors">Storia e Grande Guerra</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 2: Organizzare -->
+                <div class="lg:col-span-2 space-y-3">
+                    <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-amber-300">Organizzare</h4>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li><a href="#footer" class="hover:text-white transition-colors">Come arrivare</a></li>
+                        <li><a href="#footer" class="hover:text-white transition-colors">Come muoversi</a></li>
+                        <li><a href="#footer" class="hover:text-white transition-colors">Dove dormire</a></li>
+                        <li><a href="#meteo" class="hover:text-white transition-colors">Dove mangiare</a></li>
+                        <li><a href="#comuni" class="hover:text-white transition-colors">Mappa</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Ogni giorno -->
+                <div class="lg:col-span-2 space-y-3">
+                    <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-amber-300">Ogni giorno</h4>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li><a href="#oggi" class="hover:text-white transition-colors">Dove andare oggi</a></li>
+                        <li><a href="#meteo" class="hover:text-white transition-colors">Meteo e neve</a></li>
+                        <li><a href="#meteo" class="hover:text-white transition-colors">Webcam</a></li>
+                        <li><a href="#eventi" class="hover:text-white transition-colors">Eventi</a></li>
+                        <li><a href="#footer" class="hover:text-white transition-colors">Numeri utili</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Info -->
+                <div class="lg:col-span-2 space-y-3">
+                    <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-amber-300">Info</h4>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li><button onclick="openNandoModal()" class="hover:text-white transition-colors cursor-pointer">Chiedi a Nando</button></li>
+                        <li><a href="#nando" class="hover:text-white transition-colors">Domande frequenti</a></li>
+                        <li><a href="#footer" class="hover:text-white transition-colors">Contatti</a></li>
+                        <li><a href="#privacy" onclick="openCookieModal(); return false;" class="hover:text-white transition-colors">Privacy</a></li>
+                        <li><a href="#cookie" onclick="openCookieModal(); return false;" class="hover:text-white transition-colors">Cookie policy</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Bottom Copyright & Cookie Preferences -->
+            <div class="pt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-slate-400">
+                <p>
+                    © 2026 tuttoaltopiano.it — guida indipendente, non è un sito istituzionale. Dati meteo: Open-Meteo.
+                </p>
+                <button onclick="openCookieModal()" class="text-left sm:text-right text-amber-200/90 hover:text-amber-200 underline underline-offset-4 cursor-pointer">
+                    Preferenze cookie
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================================
+         INTERACTIVE NANDO VIRTUAL ASSISTANT MODAL
+    ========================================================== -->
+    <div id="nando-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/65 backdrop-blur-sm">
+        <div class="relative w-full max-w-lg rounded-3xl bg-alabaster border border-spruce/20 shadow-2xl overflow-hidden flex flex-col max-h-[88vh]">
+            <!-- Modal Header -->
+            <div class="bg-spruce text-white px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-full bg-amber-400 text-spruceDark font-serif font-bold flex items-center justify-center">N</div>
+                    <div>
+                        <h3 class="font-bold text-base">Chiedi a Nando</h3>
+                        <p class="font-mono text-[11px] text-amber-200">La guida virtuale dell'Altopiano</p>
+                    </div>
+                </div>
+                <button onclick="closeNandoModal()" aria-label="Chiudi" class="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Chat Messages History -->
+            <div id="nando-chat-log" class="p-5 space-y-3 overflow-y-auto flex-1 text-sm">
+                <div class="p-4 rounded-2xl bg-white border border-spruce/10 text-charcoal leading-relaxed shadow-sm">
+                    Ciao! Chiedimi pure un consiglio su sentieri, meteo, malghe o come muoverti sull'Altopiano dei Sette Comuni.
+                </div>
+            </div>
+
+            <!-- Quick Question Suggestions -->
+            <div class="px-5 py-2.5 bg-limestone/60 border-t border-spruce/10 flex gap-2 overflow-x-auto">
+                <button onclick="sendQuickNando('Che sentiero faccio con i bambini?')" class="shrink-0 px-3 py-1.5 rounded-full bg-white border border-spruce/15 text-xs font-semibold text-spruce hover:bg-spruce hover:text-white transition-colors cursor-pointer">
+                    Sentiero con bambini?
+                </button>
+                <button onclick="sendQuickNando('Dove si scia oggi sull\'Altopiano?')" class="shrink-0 px-3 py-1.5 rounded-full bg-white border border-spruce/15 text-xs font-semibold text-spruce hover:bg-spruce hover:text-white transition-colors cursor-pointer">
+                    Dove si scia oggi?
+                </button>
+                <button onclick="sendQuickNando('Cosa vedo in un giorno tra Asiago e Gallio?')" class="shrink-0 px-3 py-1.5 rounded-full bg-white border border-spruce/15 text-xs font-semibold text-spruce hover:bg-spruce hover:text-white transition-colors cursor-pointer">
+                    1 giorno Asiago e Gallio?
+                </button>
+            </div>
+
+            <!-- Input Bar -->
+            <form id="nando-chat-form" class="p-4 bg-white border-t border-spruce/10 flex items-center gap-2">
+                <input id="nando-input" type="text" required placeholder="Scrivi la tua domanda a Nando..." class="flex-1 px-4 py-3 rounded-xl bg-alabaster border border-spruce/15 text-sm text-charcoal focus:outline-none focus:border-spruce">
+                <button type="submit" class="px-5 py-3 rounded-xl bg-spruce hover:bg-spruceLight text-white font-semibold text-sm transition-colors cursor-pointer">
+                    Invia
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         COOKIE PREFERENCES MODAL
+    ========================================================== -->
+    <div id="cookie-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/65 backdrop-blur-sm">
+        <div class="w-full max-w-md rounded-3xl bg-white border border-spruce/15 p-6 sm:p-8 shadow-2xl space-y-4">
+            <h3 class="font-serif font-bold text-2xl text-spruce">Preferenze cookie</h3>
+            <p class="text-sm text-charcoal/80 leading-relaxed">
+                <strong>tuttoaltopiano.it</strong> è una guida indipendente dell'Altopiano dei Sette Comuni. Utilizziamo solo cookie tecnici essenziali e dati meteo aggregati da Open-Meteo.
+            </p>
+            <div class="flex gap-3 pt-2">
+                <button onclick="closeCookieModal()" class="flex-1 py-3 rounded-xl bg-spruce text-white font-semibold text-sm hover:bg-spruceLight transition-colors cursor-pointer">
+                    Salva preferenze
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         INTERACTIVE JAVASCRIPT
+    ========================================================== -->
+    <script>
+        const nandoAnswers = [
+            {
+                q: "Che sentiero faccio con i bambini?",
+                a: "Ti consiglio l'<strong>Anello del Monte Zebio</strong> (Facile · 2h 30') oppure l'<strong>Anello della Marcesina</strong> (Facile · 2h 45'): entrambi offrono ampi pascoli, dislivelli dolci e tappe perfette per una sosta in malga."
+            },
+            {
+                q: "Dove si scia oggi sull'Altopiano?",
+                a: "Oggi ad Asiago (1.000 m) abbiamo 5°C con 0.0 cm di neve fresca: per lo sci di fondo il punto di riferimento resta il <strong>Centro Fondo Campomulo (Gallio)</strong> e la <strong>Piana della Marcesina</strong>, mentre per la discesa ci sono le piste di Melette e Kaberlaba non appena arriva l'innevamento."
+            },
+            {
+                q: "Cosa vedo in un giorno tra Asiago e Gallio?",
+                a: "Inizia la mattina dal <strong>Corso di Asiago</strong> e dal <strong>Sacrario Militare del Leiten</strong>, prosegui verso <strong>Gallio</strong> per pranzo in trattoria o malga e nel pomeriggio sali verso Campomulo o la <strong>Piana della Marcesina</strong>."
+            },
+            {
+                q: "Quali malghe sono aperte a settembre?",
+                a: "A settembre la maggior parte delle malghe dell'Altopiano (tra Gallio, Asiago e la Marcesina) è aperta fino alla transumanza di fine mese: è il periodo ideale per assaggiare <strong>Asiago DOP</strong> e ricotta fresca appena prodotta."
+            }
+        ];
+
+        function askNandoInline(index) {
+            const box = document.getElementById('nando-inline-reply');
+            const item = nandoAnswers[index];
+            if (!box || !item) return;
+            box.innerHTML = `<div class="font-mono text-xs text-spruce/70 mb-1.5">Domanda: "${item.q}"</div><div>${item.a}</div>`;
+        }
+
+        function generateNandoReply(text) {
+            const lower = text.toLowerCase();
+            if (lower.includes('bambin') || lower.includes('famigl')) return nandoAnswers[0].a;
+            if (lower.includes('sci') || lower.includes('neve') || lower.includes('fondo')) return nandoAnswers[1].a;
+            if (lower.includes('giorno') || lower.includes('asiago') || lower.includes('gallio')) return nandoAnswers[2].a;
+            if (lower.includes('malg') || lower.includes('formagg') || lower.includes('settembre')) return nandoAnswers[3].a;
+            if (lower.includes('piogg') || lower.includes('meteo')) {
+                return "Con meteo incerto ti consiglio una visita al <strong>Sacrario Militare del Leiten</strong> ad Asiago, una passeggiata coperta lungo il Corso con sosta caseificio, oppure il museo della Grande Guerra a Canove di Roana.";
+            }
+            if (lower.includes('auto') || lower.includes('bus') || lower.includes('arrivar')) {
+                return "Puoi salire sull'Altopiano via <strong>Valdastico</strong> (uscita Piovene Rocchette) o <strong>Valsugana</strong>, oppure con i collegamenti bus extraurbani SVT da Vicenza e Bassano del Grappa verso Asiago e Gallio.";
+            }
+            return "Ottima domanda! Per questa giornata (5°C, poco nuvoloso, vento a 11 km/h) ti suggerisco il <strong>Sacrario del Leiten</strong>, la <strong>Piana della Marcesina</strong> o il <strong>Ponte di Roana</strong>.";
+        }
+
+        function openNandoModal() {
+            const modal = document.getElementById('nando-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeNandoModal() {
+            const modal = document.getElementById('nando-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function sendQuickNando(question) {
+            appendChatMessage(question, true);
+            setTimeout(() => {
+                appendChatMessage(generateNandoReply(question), false);
+            }, 250);
+        }
+
+        function appendChatMessage(html, isUser) {
+            const log = document.getElementById('nando-chat-log');
+            const bubble = document.createElement('div');
+            bubble.className = isUser
+                ? 'ml-auto max-w-[85%] p-3.5 rounded-2xl bg-spruce text-white leading-relaxed'
+                : 'mr-auto max-w-[90%] p-4 rounded-2xl bg-white border border-spruce/10 text-charcoal leading-relaxed shadow-sm';
+            bubble.innerHTML = html;
+            log.appendChild(bubble);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        document.getElementById('nando-chat-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const input = document.getElementById('nando-input');
+            const q = input.value.trim();
+            if (!q) return;
+            input.value = '';
+            sendQuickNando(q);
+        });
+
+        function toggleForecastDrawer() {
+            const strip = document.getElementById('forecast-strip');
+            strip.classList.toggle('hidden');
+        }
+
+        function openCookieModal() {
+            const modal = document.getElementById('cookie-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeCookieModal() {
+            const modal = document.getElementById('cookie-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
+            const toggleBtn = document.getElementById('mobile-menu-toggle');
+            const drawer = document.getElementById('mobile-drawer');
+            const iconOpen = document.getElementById('icon-open');
+            const iconClose = document.getElementById('icon-close');
+
+            toggleBtn.addEventListener('click', () => {
+                const isHidden = drawer.classList.contains('hidden');
+                drawer.classList.toggle('hidden', !isHidden);
+                iconOpen.classList.toggle('hidden', isHidden);
+                iconClose.classList.toggle('hidden', !isHidden);
+            });
+
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    drawer.classList.add('hidden');
+                    iconOpen.classList.remove('hidden');
+                    iconClose.classList.add('hidden');
+                });
+            });
+
+            // Trail Difficulty Filter
+            const trailBtns = document.querySelectorAll('.trail-filter');
+            const trailItems = document.querySelectorAll('.trail-item');
+
+            trailBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const diff = btn.getAttribute('data-diff');
+                    trailBtns.forEach(b => {
+                        b.classList.remove('bg-spruce', 'text-white');
+                        b.classList.add('bg-white', 'border', 'border-spruce/15', 'text-charcoal/75');
+                    });
+                    btn.classList.remove('bg-white', 'border', 'border-spruce/15', 'text-charcoal/75');
+                    btn.classList.add('bg-spruce', 'text-white');
+
+                    trailItems.forEach(item => {
+                        const itemDiff = item.getAttribute('data-difficulty');
+                        item.style.display = (diff === 'all' || itemDiff === diff) ? '' : 'none';
+                    });
+                });
+            });
+
+            // Scroll Reveal
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
